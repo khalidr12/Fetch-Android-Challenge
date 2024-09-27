@@ -1,5 +1,6 @@
 package com.fetch.application.ui.viewmodel
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fetch.application.api.Item
@@ -9,14 +10,19 @@ import kotlinx.coroutines.launch
 class ItemViewModel(
     private val itemRepository: ItemRepository
 ) : ViewModel() {
-    private var _items =  mutableListOf<Item>()
-    val items: MutableList<Item> = _items
+    private var _items =  mutableStateListOf<Item>()
+    val items: List<Item> = _items
 
-    fun fetchUsers() {
+    init {
+        fetchItems(1)
+    }
+
+    fun fetchItems(listId: Int) {
         viewModelScope.launch {
-            itemRepository.fetchItems().map { item ->
-                items.add(item)
-            }
+            _items.clear()
+            val fetchedItems = itemRepository.fetchItems(listId)
+            _items.addAll(fetchedItems)
+            println(items)
         }
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FetchApplication</string>
+    <string name="list_id">List ID: %1$s</string>
 </resources>
