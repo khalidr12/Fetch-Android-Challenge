@@ -1,5 +1,6 @@
-package com.fetch.application.api
+package com.fetch.application.data.api
 
+import com.fetch.application.data.room.Item
 import retrofit2.http.GET
 
 interface ItemAPIService {
