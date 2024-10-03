@@ -1,5 +1,6 @@
 package com.fetch.application.ui.views
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -8,9 +9,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.fetch.application.data.ItemModel
 import com.fetch.application.ui.UiState
+import com.fetch.application.ui.theme.FetchPurple
 import com.fetch.application.ui.viewmodel.ItemViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -48,7 +51,9 @@ fun ItemsScreen(viewModel: ItemViewModel = koinViewModel()) {
             }
             is UiState.Error -> {
                 val error = (uiState as UiState.Error).exception
-                ErrorComponent(error, it)
+                ErrorComponent(error, it) {
+                    viewModel.refresh(selectedIndex.value + 1)
+                }
             }
         }
     }

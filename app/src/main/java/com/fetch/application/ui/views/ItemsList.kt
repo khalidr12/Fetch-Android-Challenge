@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -58,12 +58,17 @@ fun ItemsList(
             .padding(topAppBarPaddingValue)
             .background(FetchPurple)
             .padding(horizontal = 16.dp, vertical = 8.dp)
-            .fillMaxWidth()
+            .fillMaxSize()
 
     ) {
         LazyColumn(
             state = lazyListState
         ) {
+            if(itemModels.isEmpty()) {
+                item {
+                    EmptyComponent(paddingValues = topAppBarPaddingValue)
+                }
+            }
             items(itemModels.size) { item ->
                 ItemRow(itemModels[item])
             }

@@ -21,13 +21,20 @@ class ItemViewModel(
     val uiState = _uiState.asStateFlow()
 
     init {
-        fetchItems(1)
+        initialFetch()
     }
 
+    private fun initialFetch() {
+        viewModelScope.launch {
+            _uiState.value = UiState.Loading
+            fetchItemsUseCase.fetchFromAPI()
+            fetchItems(INITIAL_PAGE)
+        }
+    }
     fun fetchItems(listId: Int) {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
-            _uiState.value = fetchItemsUseCase(listId)
+            _uiState.value = fetchItemsUseCase.fetchFromDB(listId)
         }
     }
 
@@ -36,5 +43,9 @@ class ItemViewModel(
             _uiState.value = UiState.Loading
             _uiState.value = fetchItemsUseCase.refresh(listId)
         }
+    }
+
+    companion object {
+        const val INITIAL_PAGE = 1
     }
 }
