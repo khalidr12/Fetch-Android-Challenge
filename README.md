@@ -1,4 +1,7 @@
 # Fetch Rewards Challenge
+Watch the demo video here [Youtube](https://youtube.com/shorts/x-ELDxf7rIk?feature=share) 
+
+Watch the demo video for the empty state pull to refresh here [Youtube](https://youtube.com/shorts/qb9BtNOI4SQ?feature=share)
 
 ## Overview
 
