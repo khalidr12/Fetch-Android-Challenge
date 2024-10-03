@@ -76,5 +76,6 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.1")
     kapt ("androidx.room:room-compiler:2.6.1")
     implementation ("androidx.compose.material3:material3:1.3.0")
+    implementation("com.valentinilk.shimmer:compose-shimmer:1.3.1")
 
 }
