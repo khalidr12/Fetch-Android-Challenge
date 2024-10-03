@@ -24,6 +24,9 @@ class ItemViewModel(
         initialFetch()
     }
 
+    /**
+     * Runs one time on each start up, to populate the db with latest from API
+     * */
     private fun initialFetch() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
@@ -31,6 +34,10 @@ class ItemViewModel(
             fetchItems(INITIAL_PAGE)
         }
     }
+
+    /**
+     * Method to fetch Items from local DB on each tab
+     * */
     fun fetchItems(listId: Int) {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
